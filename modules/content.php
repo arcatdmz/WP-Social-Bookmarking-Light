@@ -27,10 +27,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @param string $title
  * @return string
  */
-function wp_social_bookmarking_light_output($services, $link, $title)
+function wp_social_bookmarking_light_output($services, $link, $title, $date=null)
 {
     $plugin = new \WpSocialBookmarkingLight\Plugin();
-    return $plugin->getBuilder()->content($services, $link, $title);
+    return $plugin->getBuilder()->content($services, $link, $title, $date);
 }
 
 /**
@@ -42,14 +42,14 @@ function wp_social_bookmarking_light_output($services, $link, $title)
  * @param string $link
  * @param string $title
  */
-function wp_social_bookmarking_light_output_e($services = null, $link = null, $title = null)
+function wp_social_bookmarking_light_output_e($services = null, $link = null, $title = null, $date=null)
 {
     if ($services == null) {
         $o = new \WpSocialBookmarkingLight\Option();
         $options = $o->getAll();
         $services = $options['services'];
     }
-    echo wp_social_bookmarking_light_output($services, $link, $title);
+    echo wp_social_bookmarking_light_output($services, $link, $title, $date);
 }
 
 /**

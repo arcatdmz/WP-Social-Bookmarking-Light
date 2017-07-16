@@ -80,16 +80,16 @@ class Plugin
         }
 
         $options = $this->option->getAll();
-        $out = $this->builder->content($options['services'], get_permalink(), get_the_title());
+        $out = $this->builder->content($options['services'], get_permalink(), get_the_title(), strtotime(get_the_date('Y-m-d')));
         if ($out == '') {
             return $content;
         }
         if ($options['position'] === 'top') {
-            return "{$out}{$content}";
+            return "<div class=\"top\">{$out}</div>{$content}";
         } elseif ($options['position'] === 'bottom') {
             return "{$content}{$out}";
         } elseif ($options['position'] === 'both') {
-            return "{$out}{$content}{$out}";
+            return "<div class=\"top\">{$out}</div>{$content}{$out}";
         }
         return $content;
     }

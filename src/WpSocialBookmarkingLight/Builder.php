@@ -86,9 +86,9 @@ class Builder
      * @param $title string
      * @return string
      */
-    public function content($services, $link, $title)
+    public function content($services, $link, $title, $date=null)
     {
-        $wp = new Service($this->option, $link, $title);
+        $wp = new Service($this->option, $link, $title, $date);
         $service_types = Service::getServiceTypes();
 
         $context = array();

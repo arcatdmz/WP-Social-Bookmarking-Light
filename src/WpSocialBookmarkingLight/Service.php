@@ -25,6 +25,8 @@ class Service
     /** @var  string */
     private $title;
 
+    private $date;
+
     /** @var  string */
     private $encode_url;
 
@@ -40,8 +42,15 @@ class Service
      * @param $url string
      * @param $title string
      */
-    public function __construct(OptionInterface $option, $url, $title)
+    public function __construct(OptionInterface $option, $url, $title, $date)
     {
+
+        //
+        $this->date = $date;
+        if (strtotime('2017-07-07') - $date > 0) {
+            $url = str_replace('https:', 'http:', $url);
+        }
+
         $this->option = $option;
         $this->blogname = $this->toUTF8(get_bloginfo('name'));
         $this->url = $url;
@@ -165,6 +174,7 @@ class Service
         $alt = Text::locale("Bookmark this on Hatena Bookmark");
         return $this->linkRaw('<a href="' . $url . '"'
             . ' class="hatena-bookmark-button"'
+            . ' data-hatena-bookmark-url="' . $this->url . '"'
             . ' data-hatena-bookmark-title="' . $title . '"'
             . ' data-hatena-bookmark-layout="' . $options['hatena_button']['layout'] . '"'
             . ' title="' . $alt . '">'
