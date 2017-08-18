@@ -45,7 +45,7 @@ class Service
     public function __construct(OptionInterface $option, $url, $title, $date)
     {
 
-        //
+        // use HTTPS after 2017-07-07
         $this->date = $date;
         if (strtotime('2017-07-07') - $date > 0) {
             $url = str_replace('https:', 'http:', $url);
